@@ -10,3 +10,11 @@ class RegisterViewSet(viewsets.ModelViewSet):
 
     serializer_class = RegisterSerializer
     queryset = User.objects.all()
+
+    # def perform_create(self, serializer):
+    #     instance = serializer.save()
+    #     instance.set_password(instance.password)
+    #     instance.save()
+
+
+    

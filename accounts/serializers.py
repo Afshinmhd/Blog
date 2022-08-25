@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from django.contrib.auth import password_validation
 
 
 def clean_email(value):
@@ -22,10 +23,11 @@ class RegisterSerializer(serializers.ModelSerializer):
             'email': {'validators': (clean_email,)}
         }
 
-        def validate_username(self, value):
-            user = User.objects.filter(username = value)
-            if user:
-                raise serializers.ValidationError()
-            return value
+    
+    def validate_username(self, value):
+        user = User.objects.filter(username=value)
+        if user:
+            raise serializers.ValidationError()
+        return value
 
         

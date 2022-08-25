@@ -1,0 +1,3 @@
+SUPPORTED_IMAGE_FORMAT = ['jpeg', 'jpg', 'png']
+MAX_IMAGES_LENGTH = 5
+MAX_IMAGE_SIZE = 2 * 1024 * 1024
