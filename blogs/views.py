@@ -2,6 +2,7 @@ from rest_framework import viewsets
 from .serializers import ArticleSerializer
 from .models import ArticleModel
 from .permissions import IsOwnerOrReadOnly
+from rest_framework.permissions import AllowAny
 
 
 class ArticleViewSet(viewsets.ModelViewSet):

@@ -31,3 +31,16 @@ class ArticleImageModel(BaseModel):
     def __str__(self):
         return self.image.name
 
+
+class CommentModel(BaseModel):
+    """
+        This class used to store comments
+    """
+    user = models.ForeignKey(User, verbose_name=_('user'), on_delete=models.CASCADE)
+    article = models.ForeignKey(ArticleModel,
+     verbose_name=_('article'), related_name='comments', on_delete=models.CASCADE)
+    text = models.TextField(_('text'))
+
+    def __str__(self):
+        return self.text[:40]
+
