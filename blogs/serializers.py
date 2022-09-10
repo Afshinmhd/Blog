@@ -5,6 +5,7 @@ from django.conf import settings
 from django.db import transaction, DatabaseError
 from rest_framework.exceptions import NotAcceptable
 from rest_framework.serializers import SerializerMethodField
+from django.shortcuts import get_object_or_404
 
 
 class ArticleSerializer(serializers.ModelSerializer):
@@ -53,7 +54,15 @@ class CommentSerializer(serializers.ModelSerializer):
     """
         This class used to serialize input data for create comment
     """
+    user = serializers.ReadOnlyField(source='user.username')
     class Meta:
         model = CommentModel
-        fields = ('user', 'text')
+        fields = ('id', 'user', 'text')
+
+    def create(self, validated_data):
+        pk = validated_data.pop('article')
+        article = get_object_or_404(ArticleModel, pk)
+        return CommentModel.objects.create(text=validated_data['text'], article=article)
+        
+        
 

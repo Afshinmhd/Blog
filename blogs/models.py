@@ -25,7 +25,7 @@ class ArticleImageModel(BaseModel):
     
     article = models.ForeignKey(
         ArticleModel, verbose_name=_('article'), on_delete=models.CASCADE)
-
+        
     image = models.ImageField(_('image'), upload_to=image_path, null=True, blank=True)
 
     def __str__(self):
